@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 const App = () => {
-  const [running, setRunning] = useState(true);
+  const [running, setRunning] = useState(false);
   const [time, setTime] = useState({ minutes: 25, seconds: 0 });
 
   useEffect(() => {
@@ -14,15 +14,23 @@ const App = () => {
       } else {
         setTime(() => ({ minutes: time.minutes, seconds: time.seconds - 1 }));
       }
-      return () => {
-        clearTimeout(timerId);
-      };
     }, 1000);
+    return () => {
+      clearTimeout(timerId);
+    };
   }, [time, running]);
   return (
-    <div>{`${time.minutes} : ${time.seconds < 10 ? "0" : ""}${
-      time.seconds
-    }`}</div>
+    <div>
+      {`${time.minutes} : ${time.seconds < 10 ? "0" : ""}${time.seconds}`}
+      <div className="flex gap-x-4">
+        <div
+          className="border-2 border-zinc-400 w-[100px] h-[50px] p-4 rounded-xl flex items-center justify-center cursor-pointer"
+          onClick={() => setRunning(!running)}
+        >
+          {running ? "Stop" : "Start"}
+        </div>
+      </div>
+    </div>
   );
 };
 
