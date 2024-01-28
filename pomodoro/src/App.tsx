@@ -5,7 +5,7 @@ const App = () => {
   const [running, setRunning] = useState(false);
 
   return (
-    <div>
+    <div className="flex items-center justify-center h-[100vh]">
       <Timer running={running} setRunning={setRunning} />
     </div>
   );
