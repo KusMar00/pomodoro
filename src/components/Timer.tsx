@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import Tilt from "react-parallax-tilt";
 
 interface TimerProps {
   running: boolean;
@@ -48,12 +49,16 @@ const Timer = ({ running, setRunning }: TimerProps) => {
   return (
     <div>
       <div className="flex flex-col justify-center items-center font-rubik">
-        <h3 className="text-xl">{`${phase.title} #${phase.iteration}`}</h3>
-        <h1 className="md:text-8xl text-7xl italic mt-5">
-          {`${time.minutes < 10 ? "0" : ""}${time.minutes}:${
-            time.seconds < 10 ? "0" : ""
-          }${time.seconds}`}
-        </h1>
+        <h3 className="text-xl mb-5">{`${phase.title} #${phase.iteration}`}</h3>
+        <Tilt>
+          <div className="width-[250px] h-[200px] bg-white/40 backdrop-blur-4xl rounded-xl shadow-xl px-7 flex items-center justify-center border-4 border-black">
+            <h1 className="md:text-8xl text-7xl italic mt-5 cursor-default">
+              {`${time.minutes < 10 ? "0" : ""}${time.minutes}:${
+                time.seconds < 10 ? "0" : ""
+              }${time.seconds}`}
+            </h1>
+          </div>
+        </Tilt>
       </div>
       <div className="flex items-center justify-center mt-5 gap-x-2 text-xl font-mono font-semibold">
         <div
